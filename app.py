@@ -25,45 +25,53 @@ st.info(
 
 st.subheader("환자 측정값 입력")
 
+st.caption(
+    "※ 아래 범위는 본 합성 데이터 기반 모델에서 사용하기 위한 입력 범위이며, "
+    "실제 임상적 정상범위 또는 진단 기준을 의미하지 않습니다."
+)
+
 col1, col2 = st.columns(2)
 
 with col1:
-    d0_mm = st.number_input(
+    d0_mm = st.slider(
         "총경동맥 직경 D₀ (mm)",
-        min_value=1.0,
-        max_value=12.0,
+        min_value=4.0,
+        max_value=8.0,
         value=6.2,
         step=0.1
     )
-    distension_percent = st.number_input(
+
+    distension_percent = st.slider(
         "혈관 팽창률 (%)",
-        min_value=0.0,
-        max_value=20.0,
+        min_value=1.0,
+        max_value=15.0,
         value=5.0,
         step=0.1
     )
-    sbp = st.number_input(
+
+    sbp = st.slider(
         "수축기 혈압 SBP (mmHg)",
-        min_value=60.0,
-        max_value=250.0,
-        value=120.0,
-        step=1.0
+        min_value=90,
+        max_value=180,
+        value=120,
+        step=1
     )
 
 with col2:
-    v_mean = st.number_input(
+    v_mean = st.slider(
         "평균 혈류속도 (m/s)",
-        min_value=0.0,
-        max_value=2.0,
+        min_value=0.10,
+        max_value=0.60,
         value=0.30,
         step=0.01
     )
-    dbp = st.number_input(
+
+    dbp = st.slider(
         "이완기 혈압 DBP (mmHg)",
-        min_value=30.0,
-        max_value=160.0,
-        value=80.0,
-        step=1.0
+        min_value=50,
+        max_value=110,
+        value=80,
+        step=1
     )
 
 if st.button("분석하기", type="primary", use_container_width=True):
