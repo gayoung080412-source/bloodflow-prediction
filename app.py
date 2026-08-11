@@ -188,6 +188,7 @@ if st.button("분석하기", type="primary", use_container_width=True):
     display_df["예측 확률(%)"] = display_df["예측 확률(%)"].map(
         lambda x: f"{x:.2f}%"
     )
+    
 st.divider()
 st.subheader("🔍 결과 해석")
 
