@@ -189,6 +189,18 @@ if st.button("분석하기", type="primary", use_container_width=True):
         lambda x: f"{x:.2f}%"
     )
     
+    
+    st.dataframe(
+        display_df,
+        hide_index=True,
+        use_container_width=True
+    )
+
+    st.warning(
+        "해석 주의: 이 결과는 실제 환자 임상자료가 아니라 "
+        "수학적 혈류 모델로 생성한 합성 데이터를 학습한 결과입니다."
+    )
+
 st.divider()
 st.subheader("🔍 결과 해석")
 
@@ -223,17 +235,6 @@ st.caption(
     "※ 이 설명은 합성 데이터에서 학습된 패턴에 대한 해석이며, "
     "실제 질환의 원인이나 의학적 진단을 의미하지 않습니다."
 )
-    
-    st.dataframe(
-        display_df,
-        hide_index=True,
-        use_container_width=True
-    )
-
-    st.warning(
-        "해석 주의: 이 결과는 실제 환자 임상자료가 아니라 "
-        "수학적 혈류 모델로 생성한 합성 데이터를 학습한 결과입니다."
-    )
 
 with st.expander("입력 변수 설명"):
     st.markdown(
