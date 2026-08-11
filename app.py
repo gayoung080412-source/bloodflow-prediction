@@ -188,7 +188,41 @@ if st.button("분석하기", type="primary", use_container_width=True):
     display_df["예측 확률(%)"] = display_df["예측 확률(%)"].map(
         lambda x: f"{x:.2f}%"
     )
+st.divider()
+st.subheader("🔍 결과 해석")
 
+if prediction == "Normal":
+    st.success(
+        "입력된 혈관 직경, 팽창률, 혈압 및 평균 혈류속도의 조합이 "
+        "합성 데이터의 정상형 패턴과 가장 유사하게 나타났습니다."
+    )
+
+elif prediction == "Hypertension":
+    st.warning(
+        "입력된 측정값의 조합이 합성 데이터의 고혈압형 패턴과 "
+        "가장 유사하게 나타났습니다. 혈압 관련 입력값이 "
+        "분류에 영향을 줄 수 있습니다."
+    )
+
+elif prediction == "Arterial_Stiffness":
+    st.warning(
+        "입력된 측정값의 조합이 합성 데이터의 동맥 경직형 패턴과 "
+        "가장 유사하게 나타났습니다. 특히 혈관 팽창률은 "
+        "혈관의 탄성 특성과 관련된 변수입니다."
+    )
+
+elif prediction == "Stenosis":
+    st.error(
+        "입력된 측정값의 조합이 합성 데이터의 협착형 패턴과 "
+        "가장 유사하게 나타났습니다. 혈관 직경과 혈류속도의 "
+        "관계가 분류에 영향을 줄 수 있습니다."
+    )
+
+st.caption(
+    "※ 이 설명은 합성 데이터에서 학습된 패턴에 대한 해석이며, "
+    "실제 질환의 원인이나 의학적 진단을 의미하지 않습니다."
+)
+    
     st.dataframe(
         display_df,
         hide_index=True,
